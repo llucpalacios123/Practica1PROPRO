@@ -2,6 +2,7 @@ public interface Cua {
     // Descripció general: cua d'enters de capacitat
     //                     limitada
 
+
     void encuar(int i);
     // Afegeix un element a la cua
     // Pre:  La cua no és plena
