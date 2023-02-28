@@ -2,13 +2,15 @@ public class TaulaCircular implements Cua {
 
     //atributs
     private int[] taula;
-    private int finalTaula;
+    private int final_taula;
+    private int inici;
     private int tamany;
 
     public TaulaCircular(int n){
         taula = new int[n];
         tamany = n;
-        finalTaula = 0;
+        final_taula = 0;
+        inici = 0;
     }
 
     @Override
@@ -16,30 +18,34 @@ public class TaulaCircular implements Cua {
         if(esPlena()){
 
         }else {
-            taula[finalTaula] = i;
-            finalTaula++;
+            taula[final_taula%tamany] = i;
+            final_taula = final_taula%tamany;
         }
     }
 
     @Override
     public int desencuar() {
-        int numero = 0;
+        int numero = taula[inici];
         if(esBuida()){
 
         }else{
-            numero = taula[finalTaula-1];
-            finalTaula--;
+            inici = (inici+1)%tamany;
+
         }
         return numero;
     }
     @Override
     public boolean esPlena() {
-        return finalTaula == tamany;
+        int tamany_t = final_taula - inici;
+        if(tamany_t < 0){
+            tamany_t = (final_taula + tamany) - inici;
+        }
+        return tamany_t == tamany;
     }
 
     @Override
     public boolean esBuida() {
-        return finalTaula == 0;
+        return final_taula == inici;
     }
     // TODO
 }
